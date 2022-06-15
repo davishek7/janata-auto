@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from auth.models import TimeStampModel
+from authentication.models import TimeStampModel
 
 # Create your models here.
 
@@ -11,7 +11,7 @@ class Vendor(TimeStampModel):
     email = models.EmailField(max_length=255, blank=True, null=True)
     address = models.ForeignKey('Address', on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __repr__(self):
         return '<Vendor {self.name}>'
     
 
@@ -24,3 +24,6 @@ class Address(TimeStampModel):
     state = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
     pin_code = models.CharField(max_length=255, blank=True, null=True)
+
+    def __repr__(self):
+        return '<Address {}>'
