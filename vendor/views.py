@@ -5,8 +5,8 @@ from django.shortcuts import render
 def create(request):
     pass
 
-def list(request):
-    pass
+def vendor_list(request):
+    return render(request, 'vendor/list.html')
 
 def update(request):
     pass
