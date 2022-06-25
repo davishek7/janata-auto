@@ -12,10 +12,11 @@ class TimeStampModel(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ['created_at']
 
 
 class Address(TimeStampModel):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     address_line_one = models.CharField(max_length=255, blank=True, null=True)
     address_line_two = models.CharField(max_length=255, blank=True, null=True)
     district = models.CharField(max_length=255, blank=True, null=True)
@@ -23,17 +24,5 @@ class Address(TimeStampModel):
     country = models.CharField(max_length=255, blank=True, null=True)
     pin_code = models.CharField(max_length=255, blank=True, null=True)
 
-    def __repr__(self):
-        return '<Address {self.address_line_one}, {self.address_line_two}, {self.district}, {self.state}, {self.country}, {self.pin_code}>'
-
-
-class Image(TimeStampModel):
-    name = models.ImageField(blank=True, null=True)
-    limit = models.Q(
-                    app_label = 'vendor', model = 'Vendor') | models.Q(
-                    app_label = 'product', model = 'Product') | models.Q(
-                    app_label = 'asset', model = 'Asset'
-                    )
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, limit_choices_to = limit)
-    object_id = models.UUIDField()
-    content_object = GenericForeignKey('content_type', 'object_id')
+    def __str__(self):
+        return f'{self.address_line_one}, {self.address_line_two}, {self.district}, {self.state}, {self.country}, {self.pin_code}>'

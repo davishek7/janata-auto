@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from common.models import TimeStampModel
 from sale.models import Sale
@@ -28,7 +29,8 @@ class WarrantyClaim(TimeStampModel):
         ('Dealer Vehicle', DEALER_VEHICLE),
         ('Bus', BUS),
         )
-    
+        
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, blank=True, null=True)
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
     received_date = models.DateField(blank=True, null=True)

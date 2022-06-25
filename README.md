@@ -1,1 +1,1 @@
-# janata-auto
+# Janata Auto

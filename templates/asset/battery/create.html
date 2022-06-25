@@ -1,0 +1,71 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Battery</h1>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-lg-7 mx-auto my-3">
+                <form action="" method='post' enctype="multipart/form-data" id="form-container" class='px-2 pt-2 mx-auto'>
+                    {% csrf_token %}
+                    {{formset.management_form}}
+                    {% for form in formset %}
+                    <div class="col-12">
+                        <div class="my-3 battery-form">
+                            <div class="form-group">
+                                {{form.product}}
+                                {{form.product.non_field_errors}}
+                            </div>
+                            <div class="form-group">
+                                {{form.serial_no}}
+                                {{form.serial_no.errors}}
+                            </div>
+                            <div class="form-group">
+                                {{form.image}}
+                                {{form.image.errors}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-sm btn-block" id="save-button">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-outline-info btn-sm btn-block" id="add-form">
+                        Add More
+                    </button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let batteryForm = document.querySelectorAll('.battery-form')
+    let container = document.querySelector('#form-container')
+    let addButton = document.querySelector('#add-form')
+    let totalForms = document.querySelector('#id_form-TOTAL_FORMS')
+    let saveButton = document.querySelector('#save-button')
+
+
+    let formNum = batteryForm.length-1
+    addButton.addEventListener('click', addForm)
+
+    function addForm(e){
+        e.preventDefault()
+
+        let newForm = batteryForm[0].cloneNode(true)
+        let formRegex = RegExp(`form-(\\d){1}-`, 'g')
+
+        formNum++
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+        container.insertBefore(newForm, saveButton)
+        // container.insertAdjacentElement("beforebegin", newForm)
+
+        totalForms.setAttribute('value', `${formNum+1}`)
+    }
+</script>
+{% endblock content %}
