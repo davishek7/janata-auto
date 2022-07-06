@@ -5,7 +5,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Products</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="{% url 'product:add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-plus text-white-50"></i> Add Product
     </a>
 </div>
@@ -21,7 +21,6 @@
                         <th>Name</th>
                         <th>Category</th>
                         <th>Vendor</th>
-                        <th>Model No</th>
                         <th>MRP</th>
                         <th>Selling Price</th>
                         <th>Image</th>
@@ -31,17 +30,16 @@
                 <tbody>
                     {% for product in products %}
                     <tr>
-                        <td>{{product.name}}</td>
+                        <td>{{product}}</td>
                         <td>{{product.category}}</td>
                         <td>{{product.vendor}}</td>
-                        <td>{{product.model_no}}</td>
                         <td>{{product.mrp}}</td>
                         <td>{{product.selling_price}}</td>
-                        <td>{{product.image}}</td>
+                        <td><a href="{{product.image.url}}">View</a></td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                <a href="{% url 'product:update' product.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                 <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>

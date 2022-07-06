@@ -28,10 +28,20 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'product:list' %}">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseProducts"
+        aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-box"></i>
             <span>Products</span>
         </a>
+        <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Products Menu:</h6>
+                <a class="collapse-item" href="{% url 'product:list' %}">Products</a>
+                <a class="collapse-item" href="{% url 'asset:engine_oil_list' %}">Product Categories</a>
+                <a class="collapse-item" href="javascript:void(0)">Product Sizes</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
     </li>
 
     <li class="nav-item">

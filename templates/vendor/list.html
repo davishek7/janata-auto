@@ -5,7 +5,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Vendors</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="{% url 'vendor:add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-plus text-white-50"></i> Add Vendor
     </a>
 </div>
@@ -26,19 +26,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for vendor in vendors %}
                     <tr>
-                        <td>Ashok Kumar Agarwalla</td>
-                        <td>9876543210</td>
-                        <td>Null</td>
-                        <td>Station More, Bankura, W.B.</td>
+                        <td>{{vendor.name}}</td>
+                        <td>{{vendor.phone}}</td>
+                        <td>{{vendor.email}}</td>
+                        <td>{{vendor.address}}</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                <a href="{% url 'vendor:update' vendor.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                 <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -22,7 +22,6 @@ class Address(TimeStampModel):
     district = models.CharField(max_length=255, blank=True, null=True)
     state = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
-    pin_code = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.address_line_one}, {self.address_line_two}, {self.district}, {self.state}, {self.country}, {self.pin_code}>'
+        return f'{self.address_line_one}, {self.address_line_two}, {self.district}, {self.state}, {self.country}'

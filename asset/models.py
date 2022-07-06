@@ -1,6 +1,7 @@
 from itertools import product
 import uuid
 from django.db import models
+from django.db.models import Sum
 from common.models import TimeStampModel
 from product.models import Product
 
@@ -17,41 +18,32 @@ class Asset(TimeStampModel):
 
 class Battery(Asset):
     serial_no = models.CharField(max_length=255, blank=True, null=True)
+    model_no = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.serial_no
     
 
 class EngineOil(Asset):
 
-    SELECT_SIZE = ''
-    FIVE_HUNDRED = 500
-    EIGHT_HUNDRED = 800
-    NINE_HUNDRED = 900
-    THOUSAND = 1000
-
-    ENGINE_OIL_CHOICES = (
-        (SELECT_SIZE, 'Select Size'),
-        (FIVE_HUNDRED, '500'),
-        (EIGHT_HUNDRED, '800'),
-        (NINE_HUNDRED, '900'),
-        (THOUSAND, '1000')
-    )
-
-    size = models.PositiveIntegerField(default=SELECT_SIZE, choices=ENGINE_OIL_CHOICES)
+    model_no = models.CharField(max_length=255, blank=True, null=True)
     quantity = models.PositiveIntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.product}-{self.size} ml'
+    
+    @classmethod
+    def total_quantity(self):
+        return self.objects.all().aggregate(total_quantity=Sum('quantity')).get('quantity',0)
 
 
 class DistilledWater(Asset):
 
-    SELECT_SIZE = ''
-    TWO = 2
-    FIVE = 5
-    TEN = 10
-
-    DISTILLED_WATER_CHOICES = (
-        (SELECT_SIZE, 'Select Size'),
-        (TWO, '2'),
-        (FIVE, '5'),
-        (TEN, '10')
-    )
-
-    size = models.FloatField(default=SELECT_SIZE, choices=DISTILLED_WATER_CHOICES)
     quantity = models.PositiveIntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.product}-{self.size} l'
+
+    @classmethod
+    def total_quantity(self):
+        return self.objects.all().aggregate(total_quantity=Sum('quantity')).get('quantity',0)

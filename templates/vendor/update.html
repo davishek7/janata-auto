@@ -4,7 +4,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Add Vendor(s)</h1>
+    <h1 class="h3 mb-0 text-gray-800">Update {{vendor}}</h1>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -38,18 +38,9 @@
                             {{a_form.country}}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="submit" name="save-list" value="1" class="btn btn-outline-info btn-block">
-                                Save
-                            </button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" name="save-add" value="1" class="btn btn-outline-info btn-block">
-                                Save and Add More
-                            </button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-block">
+                        Update
+                    </button>
                 </form>
             </div>
         </div>

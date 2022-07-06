@@ -5,46 +5,43 @@ from .models import Battery, EngineOil, DistilledWater
 
 class BatteryCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.all(), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Battery'), 
                 required=True, empty_label="Select Product", 
-                widget=forms.Select(attrs={'class': 'form-control form-control-sm'}))
+                widget=forms.Select(attrs={'class': 'form-control'}))
 
     serial_no = forms.CharField(required=True, widget=forms.TextInput(
-                attrs={'class': 'form-control form-control-sm', 'placeholder':'Serial No'}))
+                attrs={'class': 'form-control', 'placeholder':'Serial No'}))
+
+    model_no = forms.CharField(required=True, widget=forms.TextInput(
+                    attrs={'class': 'form-control', 'placeholder':'Model No'}))
 
     image = forms.ImageField(required=True, widget=forms.FileInput(
-                attrs={'class': 'form-control form-control-sm', 'placeholder':'Image'}))
+                attrs={'class': 'form-control', 'placeholder':'Image'}))
 
     def clean_serial_no(self):
         serial_no = self.cleaned_data.get('serial_no')
-        if len(serial_no) == 0:
-            raise ValidationError('Serial No can not be blank.')
+        if '/' not in serial_no:
+            raise ValidationError("'/' must be in serial no")
         return serial_no
 
     class Meta:
         model = Battery
-        fields = ['product', 'serial_no', 'image']
-
-
-BatteryCreateFormSet = forms.modelformset_factory(Battery, form=BatteryCreateForm)
+        fields = ['product', 'serial_no', 'model_no', 'image']
 
 
 class EngineOilCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.all(), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Engine Oil'), 
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
-    size = forms.CharField(required=True, widget=forms.Select(
-                choices = EngineOil.ENGINE_OIL_CHOICES,
-                attrs={'class': 'form-control'}))
 
     quantity = forms.IntegerField(required=True,widget=forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder':'Quantity'}))
 
     class Meta:
         model = EngineOil
-        fields = ['product', 'size', 'quantity']
+        fields = ['product', 'quantity']
 
 
 class DistilledWaterCreateForm(forms.ModelForm):
@@ -53,13 +50,9 @@ class DistilledWaterCreateForm(forms.ModelForm):
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
-    size = forms.CharField(required=True, widget=forms.Select(
-                choices = DistilledWater.DISTILLED_WATER_CHOICES,
-                attrs={'class': 'form-control'}))
-
     quantity = forms.IntegerField(required=True,widget=forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder':'Quantity'}))
 
     class Meta:
         model = DistilledWater
-        fields = ['product', 'size', 'quantity']
+        fields = ['product', 'quantity']
