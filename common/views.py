@@ -14,6 +14,6 @@ def search(request):
     if search_form.is_valid():
         search_term = search_form.cleaned_data.get('q')
 
-        products = Product.objects.filter(Q(name__icontains = search_term)|Q(model_no__icontains=search_term)).values()
+        products = Product.objects.filter(Q(name__icontains = search_term)|Q(size__size__icontains=search_term)).values()
         print(products)
         return JsonResponse(list(products), safe=False)

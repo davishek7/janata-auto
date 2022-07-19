@@ -21,10 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third party
     'cloudinary_storage',
     'cloudinary',
     'smart_selects',
 
+    # local
     'product',
     'vendor',
     'authentication',
@@ -60,7 +62,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'product.context_processor.product_context',
                 'common.context_processor.common_context',
             ],
         },
