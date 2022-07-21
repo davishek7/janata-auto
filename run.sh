@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source env/bin/activate && python manage.py runserver
+clear && source env/bin/activate && python manage.py runserver

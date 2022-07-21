@@ -34,9 +34,8 @@
                         <td>{{vendor.address}}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                                 <a href="{% url 'vendor:update' vendor.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="{% url 'vendor:delete' vendor.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>

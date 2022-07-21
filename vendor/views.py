@@ -7,11 +7,13 @@ from common.forms import AddressForm
 # Create your views here.
 
 def vendor_list(request):
+
     vendors = Vendor.objects.filter(status=True)
     context = {'vendors':vendors}
     return render(request, 'vendor/list.html', context=context)
 
 def add_vendor(request):
+
     v_form = VendorForm()
     a_form = AddressForm()
     if request.method == "POST":
@@ -29,11 +31,11 @@ def add_vendor(request):
                 return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.error(request, str(v_form.errors)+str(a_form.errors))
-            return redirect(request.META.get('HTTP_REFERER'))
     context = {'v_form':v_form, 'a_form':a_form}
     return render(request, 'vendor/create.html', context=context)
 
 def update_vendor(request, pk):
+
     vendor = get_object_or_404(Vendor, id=pk)
     address = get_object_or_404(Address, id=vendor.address.id)
     v_form = VendorForm(instance=vendor)
@@ -48,10 +50,13 @@ def update_vendor(request, pk):
             return redirect('vendor:list')
         else:
             messages.error(request, str(v_form.errors)+str(a_form.errors))
-            return redirect(request.META.get('HTTP_REFERER'))
     context = {'v_form':v_form, 'a_form':a_form, 'vendor':vendor}
     return render(request, 'vendor/update.html', context=context)
 
+def delete_vendor(request, pk):
 
-def delete(request):
-    pass
+    vendor = get_object_or_404(Vendor, id=pk)
+    vendor.status = False
+    vendor.save()
+    messages.success(request, f'{vendor} deleted successfully!')
+    return redirect('vendor:list')

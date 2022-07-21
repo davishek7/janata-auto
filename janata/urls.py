@@ -15,7 +15,7 @@ urlpatterns = [
     path('notification/', include('notification.urls', namespace='notification')),
 
     #search view
-    path('search/', common_views.search, name='search'),
+    path('search', common_views.search, name='search'),
 
     #smart select
     path('chaining/', include('smart_selects.urls')),

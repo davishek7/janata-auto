@@ -21,5 +21,8 @@ class Address(TimeStampModel):
     state = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = 'Addresses'
+
     def __str__(self):
         return f'{self.address_line_one}, {self.address_line_two}, {self.district}, {self.state}, {self.country}'

@@ -4,7 +4,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Add Battery Asset</h1>
+    <h1 class="h3 mb-0 text-gray-800">Update Battery {{battery}}</h1>
     <a href="{% url 'asset:battery_list' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-arrow-left text-white-50"></i> Back to List
     </a>
@@ -17,27 +17,15 @@
                     {% csrf_token %}
                     <div class="col-12 my-3">
                         <div class="form-group">
-                            {{form.product}}
-                        </div>
-                        <div class="form-group">
                             {{form.serial_no}}
                         </div>
                         <div class="form-group">
                             {{form.model_no}}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="submit" name="save-list" value="1" class="btn btn-outline-info btn-block">
-                                Save
-                            </button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" name="save-add" value="1" class="btn btn-outline-info btn-block">
-                                Save and Add More
-                            </button>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-block">
+                        Save
+                    </button>
                 </form>
             </div>
         </div>
