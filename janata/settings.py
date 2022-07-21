@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = True if os.getcwd() != '/app' else False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', '.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
