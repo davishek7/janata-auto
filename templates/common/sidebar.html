@@ -1,0 +1,164 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'authentication:index' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas  fa-car-battery"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Janata Auto</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'authentication:index' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Basic
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseProducts"
+        aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-box"></i>
+            <span>Products</span>
+        </a>
+        <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Products Menu:</h6>
+                <a class="collapse-item" href="{% url 'product:list' %}">Products</a>
+                <a class="collapse-item" href="{% url 'product:list_product_category' %}">Product Categories</a>
+                <a class="collapse-item" href="{% url 'product:list_product_size' %}">Product Sizes</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseAssets"
+        aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-boxes"></i>
+            <span>Assets</span>
+        </a>
+        <div id="collapseAssets" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Assets Menu:</h6>
+                <a class="collapse-item" href="{% url 'asset:battery_list' %}">Battery</a>
+                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
+                <a class="collapse-item" href="{% url 'asset:engine_oil_list' %}">Engine Oil</a>
+                <a class="collapse-item" href="{% url 'asset:distilled_water_list' %}">Distilled Water</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'vendor:list' %}">
+            <i class="fas fa-address-book"></i>
+            <span>Vendors</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Finance
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseSales"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-rupee-sign"></i>
+            <span>Sales</span>
+        </a>
+        <div id="collapseSales" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Sales Menu:</h6>
+                <a class="collapse-item" href="javascript:void(0)">Battery</a>
+                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
+                <a class="collapse-item" href="javascript:void(0)">Engine Oil</a>
+                <a class="collapse-item" href="javascript:void(0)">Distilled Water</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapsePurchases"
+        aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-receipt"></i>
+            <span>Purchases</span>
+        </a>
+        <div id="collapsePurchases" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Purchases Menu:</h6>
+                <a class="collapse-item" href="javascript:void(0)">Battery</a>
+                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
+                <a class="collapse-item" href="javascript:void(0)">Engine Oil</a>
+                <a class="collapse-item" href="javascript:void(0)">Distilled Water</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseServices"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-tools"></i>
+            <span>Services</span>
+        </a>
+        <div id="collapseServices" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Services Menu:</h6>
+                <a class="collapse-item" href="javascript:void(0)">Battery Warranty Claim</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Records
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseYear"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-calendar"></i>
+            <span>Yearwise Records</span>
+        </a>
+        <div id="collapseYear" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Year Menu:</h6>
+                <a class="collapse-item" href="javascript:void(0)">2022</a>
+                <a class="collapse-item" href="javascript:void(0)">2021</a>
+                <a class="collapse-item" href="javascript:void(0)">2020</a>
+            </div>
+        </div>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->
