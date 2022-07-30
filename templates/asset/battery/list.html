@@ -4,8 +4,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Batteries</h1>
-    <a href="{% url 'asset:add_battery' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="{% url 'asset:add_battery' %}" class="btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-plus text-white-50"></i> Add Battery
     </a>
 </div>
@@ -20,7 +19,6 @@
                     <tr>
                         <th>Product</th>
                         <th>Serial No</th>
-                        <th>Model No</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -29,7 +27,6 @@
                     <tr>
                         <td>{{battery.product}}</td>
                         <td>{{battery.serial_no}}</td>
-                        <td>{{battery.model_no}}</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{% url 'asset:update_battery' battery.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>

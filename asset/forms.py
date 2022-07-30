@@ -12,9 +12,6 @@ class BatteryCreateForm(forms.ModelForm):
     serial_no = forms.CharField(required=True, widget=forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder':'Serial No'}))
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                    attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     def clean_serial_no(self):
         serial_no = self.cleaned_data.get('serial_no')
         if '/' not in serial_no:
@@ -23,7 +20,7 @@ class BatteryCreateForm(forms.ModelForm):
 
     class Meta:
         model = Battery
-        fields = ['product', 'serial_no', 'model_no']
+        fields = ['product', 'serial_no']
 
 
 class BatteryUpdateForm(forms.ModelForm):
@@ -31,9 +28,6 @@ class BatteryUpdateForm(forms.ModelForm):
     serial_no = forms.CharField(required=True, widget=forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder':'Serial No'}))
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                    attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     def clean_serial_no(self):
         serial_no = self.cleaned_data.get('serial_no')
         if '/' not in serial_no:
@@ -42,7 +36,7 @@ class BatteryUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Battery
-        fields = ['serial_no', 'model_no']
+        fields = ['serial_no']
 
 
 class InverterCreateForm(forms.ModelForm):
@@ -54,12 +48,9 @@ class InverterCreateForm(forms.ModelForm):
     serial_no = forms.CharField(required=True, widget=forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder':'Serial No'}))
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     class Meta:
         model = Inverter
-        fields = ['product', 'serial_no', 'model_no']
+        fields = ['product', 'serial_no']
 
 
 class InverterUpdateForm(forms.ModelForm):
@@ -67,12 +58,9 @@ class InverterUpdateForm(forms.ModelForm):
     serial_no = forms.CharField(required=True, widget=forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder':'Serial No'}))
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     class Meta:
         model = Inverter
-        fields = ['serial_no', 'model_no']
+        fields = ['serial_no']
 
 
 class EngineOilCreateForm(forms.ModelForm):
@@ -81,28 +69,22 @@ class EngineOilCreateForm(forms.ModelForm):
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     quantity = forms.IntegerField(required=True,widget=forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder':'Quantity'}))
 
     class Meta:
         model = EngineOil
-        fields = ['product', 'model_no', 'quantity']
+        fields = ['product', 'quantity']
 
 
 class EngineOilUpdateForm(forms.ModelForm):
 
-    model_no = forms.CharField(required=True, widget=forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder':'Model No'}))
-
     quantity = forms.IntegerField(required=True,widget=forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder':'Quantity'}))
 
     class Meta:
         model = EngineOil
-        fields = ['model_no', 'quantity']
+        fields = ['quantity']
 
 
 class DistilledWaterCreateForm(forms.ModelForm):

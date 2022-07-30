@@ -2,7 +2,8 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Avishek Das 2022</span>
+            {% now "Y" as current_year %}
+            <span>Copyright &copy; Avishek Das {{ current_year }}</span>
         </div>
     </div>
 </footer>

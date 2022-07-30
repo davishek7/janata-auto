@@ -11,8 +11,9 @@ urlpatterns = [
     path('vendor/', include('vendor.urls', namespace='vendor')),
     path('asset/', include('asset.urls', namespace='asset')),
     path('sale/', include('sale.urls', namespace='sale')),
-    path('purchase/', include('purchase.urls', namespace='purchase')),
     path('notification/', include('notification.urls', namespace='notification')),
+    path('transaction/', include('vendor_transaction.urls', namespace='transaction')),
+    path('trash/', include('trash.urls', namespace='trash')),
 
     #search view
     path('search', common_views.search, name='search'),

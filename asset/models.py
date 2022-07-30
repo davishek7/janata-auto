@@ -16,7 +16,6 @@ class Asset(TimeStampModel):
 
 class Battery(Asset):
     serial_no = models.CharField(max_length=255, blank=True, null=True)
-    model_no = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Batteries'
@@ -27,7 +26,6 @@ class Battery(Asset):
 
 class Inverter(Asset):
     serial_no = models.CharField(max_length=255, blank=True, null=True)
-    model_no = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.serial_no
@@ -35,7 +33,6 @@ class Inverter(Asset):
 
 class EngineOil(Asset):
 
-    model_no = models.CharField(max_length=255, blank=True, null=True)
     quantity = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):

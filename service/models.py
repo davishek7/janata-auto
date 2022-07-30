@@ -1,11 +1,11 @@
 import uuid
 from django.db import models
 from common.models import TimeStampModel
-from sale.models import Sale
+# from sale.models import Sale
 
 # Create your models here.
 
-class WarrantyClaim(TimeStampModel):
+class BatteryWarrantyClaim(TimeStampModel):
 
     SELECT_STATUS = ''
     RECEIVED = 'Received'
@@ -35,5 +35,6 @@ class WarrantyClaim(TimeStampModel):
         
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     claim_status = models.CharField(max_length=50, choices=STATUS_CHOICES, blank=True, null=True)
-    sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
+    serial_no = models.CharField(max_length=50, blank=True, null=True)
+    
     transport = models.CharField(max_length=50, choices=TRANSPORT_CHOICES, blank=True, null=True)

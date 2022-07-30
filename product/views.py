@@ -43,6 +43,13 @@ def update_product(request, pk):
     context = {'form':form, 'product':product}
     return render(request, 'product/update.html', context=context)
 
+def delete_product(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    product.status = False
+    product.save()
+    messages.success(request, f'{product} deleted successfully!')
+    return redirect('product:list')
+
 def add_product_category(request):
 
     form = ProductCategoryForm()
@@ -78,7 +85,7 @@ def update_product_category(request, pk):
             return redirect('product:list_product_category')
         else:
             messages.error(request, form.errors)
-    context = {'form':form}
+    context = {'form':form, 'category':category}
     return render(request, 'product/category/update.html', context=context) 
     
 def add_product_size(request):
@@ -116,5 +123,5 @@ def update_product_size(request, pk):
             return redirect('product:list_product_size')
         else:
             messages.error(request, form.errors)
-    context = {'form':form}
+    context = {'form':form, 'size':size}
     return render(request, 'product/size/update.html', context=context) 

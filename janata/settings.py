@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'smart_selects',
+    'django_q',
 
     # local
     'product',
@@ -32,10 +33,12 @@ INSTALLED_APPS = [
     'authentication',
     'common',
     'sale',
-    'purchase',
     'asset',
     'notification',
     'service',
+    'vendor_transaction',
+    'trash',
+    'records'
 ]
 
 MIDDLEWARE = [
@@ -112,10 +115,11 @@ MEDIA_URL = '/media/'
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'janata_media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Cloudinary
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUD_NAME'),  # required
     'API_KEY': os.environ.get('API_KEY'),  # required
@@ -123,4 +127,15 @@ CLOUDINARY_STORAGE = {
     'SECURE': True,
     'MEDIA_TAG': 'media',
     'PREFIX': MEDIA_URL
+}
+
+# Django Q
+Q_CLUSTER = {
+    'name': 'Janata',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
 }

@@ -4,8 +4,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Engine Oils</h1>
-    <a href="{% url 'asset:add_engine_oil' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="{% url 'asset:add_engine_oil' %}" class="btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-plus text-white-50"></i> Add Engine Oil
     </a>
 </div>
@@ -19,7 +18,6 @@
                 <thead>
                     <tr>
                         <th>Product</th>
-                        <th>Model No</th>
                         <th>Quantity</th>
                         <th>Actions</th>
                     </tr>
@@ -28,7 +26,6 @@
                     {% for engine_oil in engine_oils %}
                     <tr>
                         <td>{{engine_oil.product}}</td>
-                        <td>{{engine_oil.model_no}}</td>
                         <td>{{engine_oil.quantity}}</td>
                         <td>                            
                             <div class="btn-group" role="group">

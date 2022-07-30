@@ -4,14 +4,13 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Vendors</h1>
-    <a href="{% url 'vendor:add' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+    <a href="{% url 'vendor:add' %}" class="btn btn-sm btn-primary shadow-sm"><i
         class="fas fa-plus text-white-50"></i> Add Vendor
     </a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Vendors List</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Vendors</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -23,6 +22,7 @@
                         <th>Email</th>
                         <th>Address</th>
                         <th>Actions</th>
+                        <th>Transactions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +37,9 @@
                                 <a href="{% url 'vendor:update' vendor.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                 <a href="{% url 'vendor:delete' vendor.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'transaction:list' vendor.id %}" class="btn btn-sm btn-info"><i class="fas fa-rupee-sign"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
