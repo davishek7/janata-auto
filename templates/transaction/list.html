@@ -1,0 +1,76 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a href="{% url 'vendor:list' %}" class="btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-arrow-left text-white-50"></i> Back to List
+    </a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{vendor}} Transactions</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{transaction.type}}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td data-order="YYYY-MM-DD">
+                            {{transaction.date|date:"F d Y"}}
+                        </td>
+                        <td>{{transaction.description}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3" id="transactionForm">
+        <h2 class="m-0 font-weight-bold text-primary">
+            <button class="btn btn-ouline-info btn-block" type="button" data-toggle="collapse" data-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                Make Transaction
+            </button>
+        </h2>
+    </div>
+    <div class="collapse width" id="collapseWidthExample">
+        <div class="card-body">
+            <form action="{% url 'transaction:create' vendor.id %}" method="post">
+                {% csrf_token %}
+                <div class="col-12 my-3">
+                    <div class="form-group">
+                        {{form.type}}
+                    </div>
+                    <div class="form-group">
+                        {{form.amount}}
+                    </div>                
+                    <div class="form-group">
+                        {{form.date}}
+                    </div>                
+                    <div class="form-group">
+                        {{form.description}}
+                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-block">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

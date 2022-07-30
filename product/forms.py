@@ -1,7 +1,6 @@
 from django import forms
 from .models import Product, ProductCategory, ProductSize
 from vendor.models import Vendor
-from smart_selects.form_fields import ChainedModelChoiceField
 
 
 class ProductForm(forms.ModelForm):
@@ -16,6 +15,9 @@ class ProductForm(forms.ModelForm):
 
     name = forms.CharField(required=True, widget=forms.TextInput(
                     attrs={'class': 'form-control', 'placeholder':'Name'}))
+
+    model_no = forms.CharField(required=False, widget=forms.TextInput(
+                    attrs={'class': 'form-control', 'placeholder':'Model No'}))
 
     mrp = forms.FloatField(required=True, widget=forms.NumberInput(
                     attrs={'class': 'form-control', 'placeholder':'M.R.P.'}))
@@ -35,7 +37,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['category', 'vendor', 'name', 'size', 'mrp', 'selling_price', 'image']
+        fields = ['category', 'vendor', 'name', 'model_no', 'size', 'mrp', 'selling_price', 'image']
 
 
 class ProductCategoryForm(forms.ModelForm):
@@ -50,7 +52,7 @@ class ProductCategoryForm(forms.ModelForm):
 
 class ProductSizeForm(forms.ModelForm):
 
-    size = forms.CharField(required=True, widget=forms.TextInput(
+    size = forms.IntegerField(required=True, widget=forms.Select(choices=ProductSize.PRODUCT_SIZE_CHOICES,
                     attrs={'class': 'form-control', 'placeholder':'Size'}))
 
     category = forms.ModelChoiceField(queryset=ProductCategory.objects.all(), 

@@ -1,0 +1,49 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Trash</h1>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Trashed Products</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Model No</th>
+                        <th>Category</th>
+                        <th>Vendor</th>
+                        <th>MRP</th>
+                        <th>Selling Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{product}}</td>
+                        <td>{{product.model_no}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{product.vendor}}</td>
+                        <td>{{product.mrp}}</td>
+                        <td>{{product.selling_price}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'trash:restore_product' product.id %}" title="Restore Product" class="btn btn-sm btn-danger"><i class="fas fa-sync-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

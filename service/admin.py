@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import WarrantyClaim
+from .models import BatteryWarrantyClaim
 
 # Register your models here.
 
-admin.site.register(WarrantyClaim)
+admin.site.register(BatteryWarrantyClaim)

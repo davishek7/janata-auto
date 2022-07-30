@@ -20,7 +20,6 @@
                     <tr>
                         <th>Product</th>
                         <th>Serial No</th>
-                        <th>Model No</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -29,7 +28,6 @@
                     <tr>
                         <td>{{battery.product}}</td>
                         <td>{{battery.serial_no}}</td>
-                        <td>{{battery.model_no}}</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a href="{% url 'asset:update_battery' battery.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>

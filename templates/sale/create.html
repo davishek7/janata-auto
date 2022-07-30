@@ -1,0 +1,97 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a href="{% url 'sale:list' %}" class="btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-arrow-left text-white-50"></i> Back to List
+    </a>
+</div>
+<form action="" method='post' class='px-2 pt-2 mx-auto'>
+    {% csrf_token %}
+    {{s_form.media.js}}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Product Details</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            {{s_form.category}}
+                        </div>
+                        <div class="form-group input-group">
+                            {{s_form.product}}
+                        </div>
+                        <div class="form-group input-group">
+                            {{s_form.serial_no}}
+                        </div>
+                        <div class="form-group">
+                            {{s_form.date}}
+                        </div>
+                        <div class="form-group">
+                            {{s_form.price}}
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" name="customer-skip" value="1">
+                            <label class="form-check-label">Skip Customer Details</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Customer Details</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            {{c_form.customer_name}}
+                        </div>
+                        <div class="form-group input-group">
+                            {{c_form.customer_phone}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Customer Address</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            {{a_form.address_line_one}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.address_line_two}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.district}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.state}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.country}}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-info btn-block">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}

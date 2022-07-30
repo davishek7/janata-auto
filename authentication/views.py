@@ -12,5 +12,8 @@ def index(request):
     eo_count = EngineOil.total_quantity() if EngineOil.total_quantity() is not None else 0
     dw_count = DistilledWater.total_quantity() if DistilledWater.total_quantity() is not None else 0
     asset_count = (battery_count + eo_count + dw_count)
-    context = {'vendor_count':vendor_count, 'product_count':product_count, 'asset_count':asset_count}
+    context = {'vendor_count':vendor_count, 'product_count':product_count, 'asset_count':asset_count, 'sidebar':'home'}
     return render(request, 'auth/index.html', context=context)
+
+def login(request):
+    return render(request, 'auth/login.html')
