@@ -17,6 +17,9 @@ class SaleForm(forms.ModelForm):
     price = forms.FloatField(required=True, widget=forms.NumberInput(
                     attrs={'class': 'form-control', 'placeholder':'Price'}))
 
+    discount = forms.FloatField(required=False, widget=forms.NumberInput(
+                    attrs={'class': 'form-control', 'placeholder':'Discount', 'value':0}))
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -26,7 +29,7 @@ class SaleForm(forms.ModelForm):
     
     class Meta:
         model = Sale
-        fields = ['category', 'product', 'serial_no', 'date', 'price']
+        fields = ['category', 'product', 'serial_no', 'date', 'price', 'discount']
 
 
 class CustomerDetailForm(forms.ModelForm):

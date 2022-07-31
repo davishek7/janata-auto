@@ -78,10 +78,21 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'sale:list' %}">
-            <i class="fas fa-address-book"></i>
+        <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse" data-target="#collapseSales"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-rupee-sign"></i>
             <span>Sales</span>
         </a>
+        <div id="collapseSales" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Sales Menu:</h6>
+                <a class="collapse-item" href="javascript:void(0)">Battery</a>
+                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
+                <a class="collapse-item" href="javascript:void(0)">Engine Oil</a>
+                <a class="collapse-item" href="javascript:void(0)">Distilled Water</a>
+                <div class="collapse-divider"></div>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->

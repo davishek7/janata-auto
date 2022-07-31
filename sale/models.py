@@ -14,10 +14,15 @@ class Sale(TimeStampModel):
     serial_no = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
+    discount = models.FloatField(blank=True, null=True, default=0)
     customer = models.ForeignKey('CustomerDetail', on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return f'{self.category} - {self.product} - {self.date} - {self.price}'
+
+    @property
+    def get_net_price(self):
+        return (self.price - self.discount)
 
 
 class CustomerDetail(TimeStampModel):

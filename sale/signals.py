@@ -27,6 +27,15 @@ def change_asset_status_and_quantity_on_sale(sender, created, instance, **kwargs
             instance_asset.quantity -= 1
             instance_asset.save()
 
+            if instance_asset.quantity <= 5:
+                schedule(
+                    'notification.utils.create_notification_on_asset_less_than_equal_to_five',
+                    instance_asset.product.name,
+                    instance_asset.quantity,
+                    schedule_type=Schedule.ONCE,
+                    next_run=timezone.now() + timedelta(seconds=10)
+                )
+
         elif instance.category.name == "Distilled Water":
             instance_asset = DistilledWater.objects.filter(product = instance.product).first()
             instance_asset.quantity -= 1

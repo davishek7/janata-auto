@@ -1,13 +1,10 @@
 {% extends 'layout/main-layout.html' %}
-
+{% load humanize %}
 {% block content %}
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Notifications</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-        class="fas fa-check-circle text-white-50"></i> Mark as read
-    </a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -15,26 +12,44 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Read Status</th>
+                        <th>Recevied</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for notification in notifications %}
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td align="center">
+                            {% if notification.type == 'success' %}
+                            <div class="icon-circle bg-success">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            {% elif notification.type == 'warning' %}
+                            <div class="icon-circle bg-warning">
+                                <i class="fas fa-exclamation text-white"></i>
+                            </div>
+                            {% elif notification.type == 'info' %}
+                            <div class="icon-circle bg-info">
+                                <i class="fas fa-info text-white"></i>
+                            </div>
+                            {% elif notification.type == 'error' %}
+                            <div class="icon-circle bg-danger">
+                                <i class="fas fa-times text-white"></i>
+                            </div>
+                            {% endif %}   
+                        </td>
+                        <td>{{notification.title}}</td>
+                        <td>{{notification.content}}</td>
+                        <td>{{notification.read_status}}</td>
+                        <td>{{notification.created_at|naturaltime}}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

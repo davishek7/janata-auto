@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -52,7 +53,7 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter">{{notification_count}}</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -60,17 +61,33 @@
                 <h6 class="dropdown-header">
                     Alerts Center
                 </h6>
+                {% for notification in notifications_navbar %}
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
+                        {% if notification.type == 'success' %}
+                        <div class="icon-circle bg-success">
+                            <i class="fas fa-check text-white"></i>
                         </div>
+                        {% elif notification.type == 'warning' %}
+                        <div class="icon-circle bg-warning">
+                            <i class="fas fa-exclamation text-white"></i>
+                        </div>
+                        {% elif notification.type == 'info' %}
+                        <div class="icon-circle bg-info">
+                            <i class="fas fa-info text-white"></i>
+                        </div>
+                        {% elif notification.type == 'error' %}
+                        <div class="icon-circle bg-danger">
+                            <i class="fas fa-times text-white"></i>
+                        </div>
+                        {% endif %}
                     </div>
                     <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                        <div class="small text-gray-500">{{notification.created_at|naturaltime}}</div>
+                        <span class="{% if not notification.read_status %}font-weight-bold{% endif %}">{{notification.title}}</span>
                     </div>
                 </a>
+                {% endfor %}
                 <a class="dropdown-item text-center small text-gray-500" href="{% url 'notification:list' %}">Show All Alerts</a>
             </div>
         </li>
