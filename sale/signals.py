@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Sale
+from .models import BatterySale, EngineOilSale, DistilledWaterSale, ScrapBatterySale, InverterSale
 from asset.models import Battery, Inverter, EngineOil, DistilledWater
 from datetime import timedelta
 from django.utils import timezone
@@ -8,35 +8,52 @@ from django_q.tasks import schedule
 from django_q.models import Schedule
 
 
-@receiver(post_save, sender=Sale)
-def change_asset_status_and_quantity_on_sale(sender, created, instance, **kwargs):
+@receiver(post_save, sender=BatterySale)
+def change_battery_status_and_create_record(sender, created, instance, **kwargs):
     if created:
-        instance_asset = None
-        if instance.category.name == "Battery":
-            instance_asset = Battery.objects.filter(serial_no = instance.serial_no).first()
-            instance_asset.status = False
-            instance_asset.save()
+        asset = Battery.objects.filter(id = instance.battery.id, status=True).first()
+        asset.status = False
+        asset.save()
 
-        elif instance.category.name == "Inverter":
-            instance_asset = Inverter.objects.filter(serial_no = instance.serial_no).first()
-            instance_asset.status = False
-            instance_asset.save()
+@receiver(post_save, sender=EngineOilSale)
+def change_engine_oil_quantity(sender, created, instance, **kwargs):
+    if created:
+        asset = EngineOil.objects.filter(id = instance.engine_oil.id, status=True).first()
+        asset.quantity -= 1
+        asset.save()
 
-        elif instance.category.name == "Engine Oil":
-            instance_asset = EngineOil.objects.filter(product = instance.product).first()
-            instance_asset.quantity -= 1
-            instance_asset.save()
+        if asset.quantity == 5:
+            schedule(
+                'notification.utils.create_notification_on_asset_equal_to_five',
+                asset.product.name,
+                f'{asset.product.size.size} ml',
+                asset.quantity,
+                schedule_type=Schedule.ONCE,
+                next_run=timezone.now() + timedelta(seconds=10)
+            )
 
-            if instance_asset.quantity <= 5:
-                schedule(
-                    'notification.utils.create_notification_on_asset_less_than_equal_to_five',
-                    instance_asset.product.name,
-                    instance_asset.quantity,
-                    schedule_type=Schedule.ONCE,
-                    next_run=timezone.now() + timedelta(seconds=10)
-                )
+@receiver(post_save, sender=DistilledWaterSale)
+def change_distilled_water_quantity(sender, created, instance, **kwargs):
+    if created:
+        asset = DistilledWater.objects.filter(id = instance.distilled_water.id, status=True).first()
+        asset.quantity -= 1
+        asset.save()
 
-        elif instance.category.name == "Distilled Water":
-            instance_asset = DistilledWater.objects.filter(product = instance.product).first()
-            instance_asset.quantity -= 1
-            instance_asset.save()
+        if asset.quantity == 5:
+            schedule(
+                'notification.utils.create_notification_on_asset_equal_to_five',
+                asset.product.name,
+                f'{asset.product.size.size} ltr',
+                asset.quantity,
+                schedule_type=Schedule.ONCE,
+                next_run=timezone.now() + timedelta(seconds=10)
+            )
+
+@receiver(post_save, sender=InverterSale)
+def change_inverter_status_and_create_record(sender, created, instance, **kwargs):
+    if created:
+        asset = Inverter.objects.filter(id = instance.inverter.id, status=True).first()
+        asset.status = False
+        asset.save()
+
+    # if instance_asset.quantity <= 5:

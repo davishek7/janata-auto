@@ -39,8 +39,8 @@ class EngineOil(Asset):
         return f'{self.product} ml'
     
     @classmethod
-    def total_quantity(self):
-        return self.objects.all().aggregate(total_quantity=Sum('quantity')).get('total_quantity', 0)
+    def total_quantity(cls):
+        return cls.objects.all().aggregate(total_quantity=Sum('quantity')).get('total_quantity', 0)
 
 
 class DistilledWater(Asset):
@@ -48,8 +48,8 @@ class DistilledWater(Asset):
     quantity = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f'{self.product} litre'
+        return f'{self.product} ltr'
 
     @classmethod
-    def total_quantity(self):
-        return self.objects.all().aggregate(total_quantity=Sum('quantity')).get('total_quantity', 0)
+    def total_quantity(cls):
+        return cls.objects.all().aggregate(total_quantity=Sum('quantity')).get('total_quantity', 0)

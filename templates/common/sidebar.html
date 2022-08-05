@@ -54,9 +54,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Assets Menu:</h6>
                 <a class="collapse-item" href="{% url 'asset:battery_list' %}">Battery</a>
-                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
                 <a class="collapse-item" href="{% url 'asset:engine_oil_list' %}">Engine Oil</a>
                 <a class="collapse-item" href="{% url 'asset:distilled_water_list' %}">Distilled Water</a>
+                <a class="collapse-item" href="javascript:void(0)">Inverter</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
@@ -86,10 +86,11 @@
         <div id="collapseSales" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Sales Menu:</h6>
-                <a class="collapse-item" href="javascript:void(0)">Battery</a>
+                <a class="collapse-item" href="{% url 'sale:battery_sale_list' %}">Battery</a>
+                <a class="collapse-item" href="{% url 'sale:engine_oil_sale_list' %}">Engine Oil</a>
+                <a class="collapse-item" href="{% url 'sale:distilled_water_sale_list' %}">Distilled Water</a>
+                <a class="collapse-item" href="{% url 'sale:scrap_battery_sale_list' %}">Scrap Battery</a>
                 <a class="collapse-item" href="javascript:void(0)">Inverter</a>
-                <a class="collapse-item" href="javascript:void(0)">Engine Oil</a>
-                <a class="collapse-item" href="javascript:void(0)">Distilled Water</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
@@ -153,6 +154,21 @@
                 <div class="collapse-divider"></div>
             </div>
         </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Admin
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/" target="_blank">
+            <i class="fas fa-user-secret"></i>
+            <span>Django Admin</span>
+        </a>
     </li>
 
 

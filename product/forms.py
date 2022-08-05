@@ -5,11 +5,11 @@ from vendor.models import Vendor
 
 class ProductForm(forms.ModelForm):
 
-    category = forms.ModelChoiceField(queryset=ProductCategory.objects.all(), 
+    category = forms.ModelChoiceField(queryset=ProductCategory.objects.filter(status=True), 
                 required=True, empty_label="Select Category", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
-    vendor = forms.ModelChoiceField(queryset=Vendor.objects.all(), 
+    vendor = forms.ModelChoiceField(queryset=Vendor.objects.filter(status=True), 
                 required=True, empty_label="Select Vendor", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 

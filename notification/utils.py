@@ -1,10 +1,10 @@
 from .models import Notification
 
 
-def create_notification_on_asset_less_than_equal_to_five(instance, count):
+def create_notification_on_asset_equal_to_five(name, size, quantity):
 
-    notification = Notification.objects.create(
-                title = f'{instance} is about end.',
-                content = f'{instance} left only {count}.',
-                type = Notification.WARNING
-                )
+    Notification.objects.create(
+        title = f'{size} {name} is about to end.',
+        content = f'{size} {name} is only {quantity} left.',
+        type = Notification.WARNING
+    )
