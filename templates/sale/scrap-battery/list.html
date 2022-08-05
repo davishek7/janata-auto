@@ -1,0 +1,60 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a href="{% url 'sale:add_scrap_battery_sale' %}" class="btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-plus text-white-50"></i> Add Scrap Battery Sale
+    </a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Scrap Battery Sales List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Items</th>
+                        <th>Buyer</th>
+                        <th>Date</th>
+                        <th>Total Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scrap_battery in scrap_batteries %}
+                    <tr>
+                        <td>{{scrap_battery.get_formatted_data|truncatewords:15}}</td>
+                        <td>{{scrap_battery.buyer}}</td>
+                        <td data-order="YYYY-MM-DD">{{scrap_battery.date}}</td>
+                        <td>{{scrap_battery.get_total_price}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{% url 'sale:update_scrap_battery_sale' scrap_battery.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').dataTable({
+                "order": [[4, 'asc']],
+                "iDisplayLength": 25,
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+        });
+    </script>
+{% endblock js %}

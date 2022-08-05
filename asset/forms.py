@@ -5,7 +5,7 @@ from .models import Battery, EngineOil, DistilledWater, Inverter
 
 class BatteryCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Battery'), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Battery', status=True), 
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
@@ -41,7 +41,7 @@ class BatteryUpdateForm(forms.ModelForm):
 
 class InverterCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Battery'), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Inverter', status=True), 
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
@@ -65,7 +65,7 @@ class InverterUpdateForm(forms.ModelForm):
 
 class EngineOilCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Engine Oil'), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Engine Oil', status=True), 
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
@@ -89,7 +89,7 @@ class EngineOilUpdateForm(forms.ModelForm):
 
 class DistilledWaterCreateForm(forms.ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Distilled Water'), 
+    product = forms.ModelChoiceField(queryset=Product.objects.filter(category__name='Distilled Water', status=True), 
                 required=True, empty_label="Select Product", 
                 widget=forms.Select(attrs={'class': 'form-control'}))
 
