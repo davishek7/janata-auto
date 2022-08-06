@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
+from django.dispatch import receiver
 from common.models import TimeStampModel
-# from sale.models import Sale
+from sale.models import CustomerDetail
 
 # Create your models here.
 
@@ -19,22 +20,28 @@ class BatteryWarrantyClaim(TimeStampModel):
     BUS = 'Bus'
 
     STATUS_CHOICES = (
-        ('Select Status', SELECT_STATUS),
-        ('Received', RECEIVED),
-        ('Send to Company', SEND_TO_COMPANY),
-        ('Returned_OK', RETURNED_OK),
-        ('F.O.C.', FOC),
-        ('Handover to Customer', HANDOVER_TO_CUSTOMER)
+        (SELECT_STATUS, 'Select Status'),
+        (RECEIVED, 'Received'),
+        (SEND_TO_COMPANY,'Send to Company'),
+        (RETURNED_OK,'Returned_OK'),
+        (FOC,'F.O.C.'),
+        (HANDOVER_TO_CUSTOMER,'Handover to Customer')
         )
 
     TRANSPORT_CHOICES = (        
-        ('Select Transport', SELECT_TRANSPORT),
-        ('Dealer Vehicle', DEALER_VEHICLE),
-        ('Bus', BUS),
+        (SELECT_TRANSPORT,'Select Transport'),
+        (DEALER_VEHICLE,'Dealer Vehicle'),
+        (BUS,'Bus'),
         )
         
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     claim_status = models.CharField(max_length=50, choices=STATUS_CHOICES, blank=True, null=True)
     serial_no = models.CharField(max_length=50, blank=True, null=True)
-    
+    purchase_date = models.DateField(blank=True, null=True)
+    receive_date = models.DateField(blank=True, null=True)
+    send_date = models.DateField(blank=True, null=True)
+    return_date = models.DateField(blank=True, null=True)
+    handover_date = models.DateField(blank=True, null=True)
+    new_serial_no = models.CharField(max_length=50, blank=True, null=True)
     transport = models.CharField(max_length=50, choices=TRANSPORT_CHOICES, blank=True, null=True)
+    customer = models.OneToOneField(CustomerDetail, on_delete=models.DO_NOTHING, blank=True, null=True)
