@@ -7,8 +7,6 @@ from ..forms import DistilledWaterSaleForm
 def distilled_water_sale_list(request):
 
     sales = DistilledWaterSale.objects.filter(status=True).order_by('-date').all()
-    for sale in sales:
-        print(sale.date)
     context = {'sales':sales}
     return render(request, 'sale/distilled-water/list.html', context=context)
 

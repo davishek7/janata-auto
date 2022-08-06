@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = True if os.getcwd() != '/app' else False
+DEBUG = True        #if os.getcwd() != '/app' else False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', '.railway.app']
 
