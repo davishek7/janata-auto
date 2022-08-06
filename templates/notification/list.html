@@ -49,7 +49,7 @@
                         <td>{{notification.title}}</td>
                         <td>{{notification.content}}</td>
                         <td>{{notification.read_status}}</td>
-                        <td>{{notification.created_at|naturaltime}}</td>
+                        <td data-order="YYYY-MM-DD">{{notification.created_at|naturaltime}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -58,3 +58,15 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').dataTable({
+                "order": [[4, 'asc']],
+                "iDisplayLength": 25,
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+        });
+    </script>
+{% endblock js %}

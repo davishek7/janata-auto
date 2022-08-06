@@ -55,5 +55,3 @@ def change_inverter_status_and_create_record(sender, created, instance, **kwargs
         asset = Inverter.objects.filter(id = instance.inverter.id, status=True).first()
         asset.status = False
         asset.save()
-
-    # if instance_asset.quantity <= 5:

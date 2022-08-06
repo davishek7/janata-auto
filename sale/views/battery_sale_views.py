@@ -8,7 +8,7 @@ from common.forms import AddressForm
 
 def battery_sale_list(request):
 
-    battery_sales = BatterySale.objects.filter(status = True)
+    battery_sales = BatterySale.objects.filter(status = True).order_by('-date').all()
     context = {'battery_sales':battery_sales}
     return render(request, 'sale/battery/list.html', context=context)
 

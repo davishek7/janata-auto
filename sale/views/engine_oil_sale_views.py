@@ -6,7 +6,9 @@ from ..forms import EngineOilSaleForm
 
 def engine_oil_sale_list(request):
 
-    sales = EngineOilSale.objects.filter(status=True)
+    sales = EngineOilSale.objects.filter(status=True).order_by('-date').all()
+    for sale in sales:
+        print(sale.date)
     context = {'sales':sales}
     return render(request, 'sale/engine-oil/list.html', context=context)
 

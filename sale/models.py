@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
 from django.db.models import Sum
 from common.models import TimeStampModel, Address
@@ -12,7 +12,7 @@ def jsonfield_default_value():
     return [{"item":"TZ4", "quantity":0, "price_per_piece":120}]
 
 def get_now():
-    return datetime.now()
+    return timezone.now()
 
 class Sale(TimeStampModel):
 
@@ -41,7 +41,6 @@ class Sale(TimeStampModel):
 
     class Meta:
         abstract = True
-        ordering = ['-date']
 
 
 class BICommonFields(Sale):

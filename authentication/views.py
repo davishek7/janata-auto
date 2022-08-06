@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.db.models import Sum
 from vendor.models import Vendor
 from product.models import Product
 from asset.models import Battery, EngineOil, DistilledWater, Inverter
@@ -41,3 +43,17 @@ def index(request):
 
 def login(request):
     return render(request, 'auth/login.html')
+
+# def earnings_chart(request):
+#     labels = []
+#     data = []
+
+#     queryset = BatterySale.objects.values('date__month').annotate(country_population=Sum('population')).order_by('-country_population')
+#     for entry in queryset:
+#         labels.append(entry['country__name'])
+#         data.append(entry['country_population'])
+    
+#     return JsonResponse(data={
+#         'labels': labels,
+#         'data': data,
+#     })

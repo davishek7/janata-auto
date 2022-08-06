@@ -6,7 +6,7 @@ from ..forms import ScrapBatterySaleForm
 
 def scrap_battery_sale_list(request):
 
-    scrap_batteries = ScrapBatterySale.objects.filter(status = True)
+    scrap_batteries = ScrapBatterySale.objects.filter(status = True).order_by('-date').all()
     context = {'scrap_batteries':scrap_batteries}
     return render(request, 'sale/scrap-battery/list.html', context=context)
 

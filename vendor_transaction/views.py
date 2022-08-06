@@ -10,8 +10,10 @@ def transactions_list(request, vendor_id):
 
     form = VendorTransactionForm()
     vendor = get_object_or_404(Vendor, id = vendor_id)
-    transactions = VendorTransaction.objects.select_related('vendor').filter(
+    transactions = VendorTransaction.objects.filter(
                     vendor__id = vendor_id).order_by('-date').all()
+
+    [print(transaction.date) for transaction in transactions]
     
     context = {'transactions':transactions, 'form':form, 'vendor':vendor}
     return render(request, 'transaction/list.html', context=context)

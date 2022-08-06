@@ -29,7 +29,7 @@
                         <td>{{transaction.type}}</td>
                         <td>{{transaction.amount}}</td>
                         <td data-order="YYYY-MM-DD">
-                            {{transaction.date|date:"F d Y"}}
+                            {{transaction.date}}
                         </td>
                         <td>{{transaction.description}}</td>
                     </tr>
@@ -74,3 +74,15 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').dataTable({
+                "order": [[2, 'asc']],
+                "iDisplayLength": 10,
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+        });
+    </script>
+{% endblock js %}
