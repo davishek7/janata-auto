@@ -1,0 +1,66 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a href="{% url 'service:add' %}" class="btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-plus text-white-50"></i> Add Battery Warranty Claim
+    </a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Products List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Claim Status</th>
+                        <th>Customer</th>
+                        <th>Customer Phone</th>
+                        <th>Purchase Date</th>
+                        <th>Receive Date</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for claim in claims %}
+                    <tr>
+                        <td>{{claim.serial_no}}</td>
+                        <td>{{claim.claim_status}}</td>
+                        <td>{{claim.customer.name}}</td>
+                        <td>{{claim.customer.phone}}</td>
+                        <td>{{claim.purchase_date}}</td>
+                        <td data-order="YYYY-MM-DD">{{claim.receive_date}}</td>
+                        <td>{{claim.updated_at}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{% url 'service:update' claim.id %}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').dataTable({
+                "order": [[5, 'asc']],
+                "iDisplayLength": 25,
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+        });
+    </script>
+{% endblock js %}
