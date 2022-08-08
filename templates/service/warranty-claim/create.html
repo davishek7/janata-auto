@@ -1,0 +1,139 @@
+{% extends 'layout/main-layout.html' %}
+
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <a href="{% url 'service:list' %}" class="btn btn-sm btn-primary shadow-sm"><i
+        class="fas fa-arrow-left text-white-50"></i> Back to List
+    </a>
+</div>
+<form action="" method='post' class='px-2 pt-2 mx-auto'>
+    {% csrf_token %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Claim Details</h6>
+            <button type="submit" class="btn btn-outline-info">
+                Save
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.serial_no.label}}</label>
+                                    {{w_form.serial_no}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.claim_status.label}}</label>
+                                    {{w_form.claim_status}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.purchase_date.label}}</label>
+                                    {{w_form.purchase_date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.receive_date.label}}</label>
+                                    {{w_form.receive_date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.send_date.label}}</label>
+                                    {{w_form.send_date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.return_date.label}}</label>
+                                    {{w_form.return_date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.handover_date.label}}</label>
+                                    {{w_form.handover_date}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.new_serial_no.label}}</label>
+                                    {{w_form.new_serial_no}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{w_form.transport.label}}</label>
+                                    {{w_form.transport}}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group form-check">
+                                    {{w_form.claim_success}}
+                                    <label class="form-check-label">{{w_form.claim_success.label}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Customer Details</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            {{c_form.name}}
+                        </div>
+                        <div class="form-group input-group">
+                            {{c_form.phone}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Customer Address</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7 mx-auto my-3">
+                    <div class="col-12 my-3">
+                        <div class="form-group">
+                            {{a_form.address_line_one}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.address_line_two}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.district}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.state}}
+                        </div>
+                        <div class="form-group">
+                            {{a_form.country}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}

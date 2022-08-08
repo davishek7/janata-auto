@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from common import views as common_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls', namespace='authentication')),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('sale/', include('sale.urls', namespace='sale')),
     path('notification/', include('notification.urls', namespace='notification')),
     path('transaction/', include('vendor_transaction.urls', namespace='transaction')),
+    path('service/', include('service.urls', namespace='service')),
     path('trash/', include('trash.urls', namespace='trash')),
 
     #search view
