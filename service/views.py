@@ -9,13 +9,14 @@ from sale.models import CustomerDetail
 
 # Create your views here.
 
+
 def claims_list(request):
 
-    claims = BatteryWarrantyClaim.objects.filter(status=True).order_by('-receive_date').all()
-    for claim in claims:
-        print(claim.updated_at)
-    context = {'claims':claims}
-    return render(request,'service/warranty-claim/list.html',context=context)
+    claims = BatteryWarrantyClaim.objects.filter(
+        status=True).order_by('-receive_date').all()
+    context = {'claims': claims}
+    return render(request, 'service/warranty-claim/list.html', context=context)
+
 
 def add_claim(request):
 
@@ -37,9 +38,11 @@ def add_claim(request):
             messages.success(request, 'Claim added successfully!')
             return redirect('service:list')
         else:
-            messages.success(request, str(w_form.errors) + str(c_form.errors) + str(a_form.errors))
-    context = {'w_form':w_form, 'c_form':c_form, 'a_form':a_form}
-    return render(request,'service/warranty-claim/create.html',context=context)
+            messages.success(request, str(w_form.errors) +
+                             str(c_form.errors) + str(a_form.errors))
+    context = {'w_form': w_form, 'c_form': c_form, 'a_form': a_form}
+    return render(request, 'service/warranty-claim/create.html', context=context)
+
 
 def update_claim(request, pk):
 
@@ -60,6 +63,8 @@ def update_claim(request, pk):
             messages.success(request, 'Claim updated successfully!')
             return redirect('service:list')
         else:
-            messages.success(request, str(w_form.errors) + str(c_form.errors) + str(a_form.errors))
-    context = {'claim':claim, 'w_form':w_form, 'c_form':c_form, 'a_form':a_form}
-    return render(request,'service/warranty-claim/update.html',context=context)
+            messages.success(request, str(w_form.errors) +
+                             str(c_form.errors) + str(a_form.errors))
+    context = {'claim': claim, 'w_form': w_form,
+               'c_form': c_form, 'a_form': a_form}
+    return render(request, 'service/warranty-claim/update.html', context=context)

@@ -17,12 +17,13 @@ urlpatterns = [
     path('service/', include('service.urls', namespace='service')),
     path('trash/', include('trash.urls', namespace='trash')),
 
-    #search view
-    path('search', common_views.search, name='search'),
+    # search view
+    path('search/', common_views.search, name='search'),
 
-    #smart select
+    # smart select
     path('chaining/', include('smart_selects.urls')),
 ]
 
 if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
